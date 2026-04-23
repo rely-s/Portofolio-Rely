@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Rely Maryani · Portofolio Developer</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Dark Mode -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Inter', 'system-ui', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 5s ease-in-out infinite',
+            'glow': 'glow 2s ease-in-out infinite',
+            'slide-up': 'slideUp 0.5s ease-out',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-15px)' },
+            },
+            glow: {
+              '0%, 100%': { boxShadow: '0 0 5px rgba(59,130,246,0.3)' },
+              '50%': { boxShadow: '0 0 20px rgba(59,130,246,0.6)' },
+            },
+            slideUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    /* custom scroll & efek tambahan */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
+    .dark ::-webkit-scrollbar-track { background: #1e293b; }
+    .dark ::-webkit-scrollbar-thumb { background: #60a5fa; }
+    html { scroll-behavior: smooth; }
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .card-hover:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 25px 35px -12px rgba(0,0,0,0.15);
+    }
+    .skill-item {
+      transition: all 0.2s ease;
+    }
+    .skill-item:hover {
+      transform: translateY(-4px);
+      background: linear-gradient(135deg, #eff6ff, #ffffff);
+      border-color: #60a5fa;
+    }
+    .dark .skill-item:hover {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border-color: #3b82f6;
+    }
+    /*  dark mode */
+    * {
+      transition: background-color 0.3s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
+
+  <!-- Navbar Sticky -->
+  <nav class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-blue-100 dark:border-slate-700 shadow-sm transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-5 md:px-8 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-extrabold text-blue-600 dark:text-blue-400 tracking-tight">
+        <i class="bi bi-stars me-1"></i> Portofolio
+      </a>
+      
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex gap-8 font-medium items-center">
+        <a href="#home" class="hover:text-blue-600 dark:hover:text-blue-400 transition"><i class="bi bi-house-door me-1"></i> Beranda</a>
+        <a href="#skills" class="hover:text-blue-600 dark:hover:text-blue-400 transition"><i class="bi bi-cpu me-1"></i> Keahlian</a>
+        <a href="#projects" class="hover:text-blue-600 dark:hover:text-blue-400 transition"><i class="bi bi-folder2-open me-1"></i> Proyek</a>
+        <a href="#about" class="hover:text-blue-600 dark:hover:text-blue-400 transition"><i class="bi bi-person-circle me-1"></i> Tentang</a>
+        <a href="#contact" class="hover:text-blue-600 dark:hover:text-blue-400 transition"><i class="bi bi-envelope-paper me-1"></i> Kontak</a>
+        <!-- Dark Mode Toggle Button Desktop -->
+        <button id="darkModeToggle" class="ml-4 p-2 rounded-full bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 transition">
+          <i id="darkIcon" class="bi bi-moon-fill text-slate-700 dark:text-yellow-300"></i>
+        </button>
+      </div>
+      
+      <!-- Mobile toggle -->
+      <div class="flex items-center gap-3 md:hidden">
+        <button id="darkModeToggleMobile" class="p-2 rounded-full bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 transition">
+          <i id="darkIconMobile" class="bi bi-moon-fill text-slate-700 dark:text-yellow-300"></i>
+        </button>
+        <button id="menuBtn" class="text-2xl text-slate-700 dark:text-slate-300 focus:outline-none">
+          <i class="bi bi-list"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-blue-100 dark:border-slate-700 px-5 pb-4 flex flex-col gap-3 text-center font-medium">
+      <a href="#home" class="py-2 hover:text-blue-600 dark:hover:text-blue-400 transition"><i class="bi bi-house-door me-1"></i> Beranda</a>
+      <a href="#skills" class="py-2 hover:text-blue-600 dark:hover:text-blue-400 transition"><i class="bi bi-cpu me-1"></i> Keahlian</a>
+      <a href="#projects" class="py-2 hover:text-blue-600 dark:hover:text-blue-400 transition"><i class="bi bi-folder2-open me-1"></i> Proyek</a>
+      <a href="#about" class="py-2 hover:text-blue-600 dark:hover:text-blue-400 transition"><i class="bi bi-person-circle me-1"></i> Tentang</a>
+      <a href="#contact" class="py-2 hover:text-blue-600 dark:hover:text-blue-400 transition"><i class="bi bi-envelope-paper me-1"></i> Kontak</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen flex items-center px-5 md:px-8 py-16">
+    <div class="max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+      <div class="flex-1 text-center md:text-left animate-[slideUp_0.6s_ease-out]">
+        <!-- <span class="inline-block bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-5">
+          <i class="bi bi-code-square me-1"></i> Fullstack Developer
+        </span> -->
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-justify">
+          Halo, Saya 
+          <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Rely Maryani</span>
+          <br>Creative Developer
+        </h1>
+        <p class="text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto md:mx-0 mt-6 text-justify">
+          Informatics Engineering student, Web & AI enthusiast. Membangun solusi end-to-end dengan Python, Java, PHP, Flutter & Laravel. Menyukai clean architecture, structured databases, dan intuitive user experience. Terus belajar dan berkembang di dunia teknologi.
+        <div class="flex flex-wrap gap-4 justify-center md:justify-start mt-8">
+          <a href="#projects" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full shadow-lg shadow-blue-200 dark:shadow-blue-900/30 transition flex items-center gap-2"><i class="bi bi-rocket-takeoff"></i> Jelajahi Karya</a>
+          <a href="#contact" class="border-2 border-slate-300 dark:border-slate-600 hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 px-6 py-3 rounded-full font-semibold transition flex items-center gap-2"><i class="bi bi-chat-dots"></i> Hubungi</a>
+        </div>
+      </div>
+      <div class="flex-1 flex justify-center">
+        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-tr from-blue-400 to-indigo-500 flex items-center justify-center shadow-2xl animate-float">
+          <i class="bi bi-person-bounding-box text-7xl md:text-8xl text-white drop-shadow-lg"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-20 px-5 md:px-8 bg-white/40 dark:bg-slate-800/40">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-extrabold inline-block bg-gradient-to-r from-slate-800 to-slate-600 dark:from-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
+          <i class="bi bi-tools me-2"></i> Tech Stack & Tools
+        </h2>
+        <div class="w-24 h-1 bg-blue-500 mx-auto mt-3 rounded-full"></div>
+        <p class="text-slate-500 dark:text-slate-400 mt-4">Klik pada kartu untuk melihat insight menarik.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="skillsContainer"></div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 px-5 md:px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-extrabold dark:text-white"><i class="bi bi-award me-2"></i> Proyek Unggulan</h2>
+        <div class="w-24 h-1 bg-purple-500 mx-auto mt-3 rounded-full"></div>
+        <p class="text-slate-500 dark:text-slate-400 mt-4">Klik tombol demo untuk simulasi interaksi</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsContainer"></div>
+    </div>
+  </section>
+
+  <!-- About + Contact -->
+  <section id="about" class="py-20 px-5 md:px-8 bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-800 dark:to-slate-900">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-10 items-start">
+        <!-- About Kiri -->
+        <div class="bg-white dark:bg-slate-800 p-7 rounded-3xl shadow-md border border-blue-100 dark:border-slate-700 hover:shadow-xl transition">
+          <h3 class="text-2xl font-bold flex items-center gap-2 dark:text-white"><i class="bi bi-person-vcard text-blue-500"></i> Tentang Saya</h3>
+          <div class="w-16 h-0.5 bg-blue-400 my-3"></div>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed mt-2 text-justify">
+            Halo! Saya <strong class="dark:text-white">Rely Maryani</strong>, seorang pengembang full-stack dengan pengalaman lebih dari 3 tahun dalam membangun aplikasi berbasis web, mobile, dan sistem backend. Saya memiliki fondasi kuat di <strong>Python, Java, PHP, Dart (Flutter), Laravel, MySQL</strong> serta tools pendukung seperti MySQL Workbench, Git, GitHub, VS Code, dan Cisco Packet Tracer.
+          </p>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed mt-3 text-justify">
+            Saya percaya bahwa kode yang baik bukan hanya tentang fungsionalitas tetapi juga maintainability dan skalabilitas. Saya selalu antusias mempelajari arsitektur modern, optimalisasi database, serta eksplorasi jaringan komputer. Saat ini aktif mengerjakan proyek freelance dan open-source.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-5">
+            <span class="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 px-3 py-1 rounded-full text-sm"><i class="bi bi-filetype-py"></i> Python</span>
+            <span class="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 px-3 py-1 rounded-full text-sm"><i class="bi bi-filetype-java"></i> Java</span>
+            <span class="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 px-3 py-1 rounded-full text-sm"><i class="bi bi-filetype-php"></i> PHP</span>
+            <span class="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 px-3 py-1 rounded-full text-sm"><i class="bi bi-phone"></i> Flutter</span>
+            <span class="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 px-3 py-1 rounded-full text-sm"><i class="bi bi-database"></i> MySQL</span>
+          </div>
+        </div>
+        <!-- Contact Kanan -->
+        <div id="contact" class="bg-white dark:bg-slate-800 p-7 rounded-3xl shadow-md border border-blue-100 dark:border-slate-700">
+          <h3 class="text-2xl font-bold flex items-center gap-2 dark:text-white"><i class="bi bi-envelope-paper-heart text-blue-500"></i> Kirim Pesan</h3>
+          <div class="w-16 h-0.5 bg-blue-400 my-3"></div>
+          <form id="contactForm" class="mt-4">
+            <div class="mb-4">
+              <label class="block text-sm font-semibold mb-1 dark:text-slate-300"><i class="bi bi-person"></i> Nama Lengkap</label>
+              <input type="text" id="nameInput" class="w-full border border-slate-300 dark:border-slate-600 dark:bg-slate-900 dark:text-white rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" placeholder="Nama kamu" required>
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-semibold mb-1 dark:text-slate-300"><i class="bi bi-envelope"></i> Email</label>
+              <input type="email" id="emailInput" class="w-full border border-slate-300 dark:border-slate-600 dark:bg-slate-900 dark:text-white rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" placeholder="email@domain.com" required>
+            </div>
+            <div class="mb-5">
+              <label class="block text-sm font-semibold mb-1 dark:text-slate-300"><i class="bi bi-chat-text"></i> Pesan / Kolaborasi</label>
+              <textarea id="msgInput" rows="3" class="w-full border border-slate-300 dark:border-slate-600 dark:bg-slate-900 dark:text-white rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" placeholder="Tulis pesanmu..."></textarea>
+            </div>
+            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 rounded-xl transition shadow-md flex items-center justify-center gap-2"><i class="bi bi-send"></i> Kirim Pesan</button>
+          </form>
+          <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-4"><i class="bi bi-shield-lock"></i> Privasi aman, respon dalam 24 jam.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 py-8 text-center transition-colors">
+    <div class="max-w-6xl mx-auto px-5">
+      <div class="flex justify-center gap-6 mb-4 text-2xl">
+        <a href="https://github.com/rely-s" target="_blank" rel="noopener noreferrer" class="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition"><i class="bi bi-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/rely-maryani07/" target="_blank" rel="noopener noreferrer" class="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition"> <i class="bi bi-linkedin"></i>
+        </a>
+        <a href="#" class="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition"><i class="bi bi-instagram"></i></a>
+        <!-- <a href="#" class="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition"><i class="bi bi-twitter-x"></i></a> -->
+      </div>
+      <p class="text-slate-500 dark:text-slate-400 text-sm">&copy; 2025 Portofolio - Rely Maryani 
+    </div>
+  </footer>
+
+  <!-- Toast Notifikasi -->
+  <div id="toastMessage" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-800 dark:bg-slate-900 text-white px-6 py-3 rounded-full shadow-xl text-sm font-medium z-50 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-2">
+    <i class="bi bi-info-circle-fill"></i> <span id="toastText">Notifikasi</span>
+  </div>
+
+  <script>
+    // Data Skills
+    const skillsList = [
+      { icon: "bi bi-filetype-py", name: "Python", desc: "Data analysis, Backend, API", tip: "Saya membangun sistem otomasi & REST API dengan FastAPI." },
+      { icon: "bi bi-filetype-java", name: "Java", desc: "OOP, Spring Boot, Android", tip: "Pengalaman membuat aplikasi desktop dan REST API." },
+      { icon: "bi bi-filetype-php", name: "PHP", desc: "Native, Laravel", tip: "Mengembangkan sistem informasi berbasis web sejak 2022." },
+      { icon: "bi bi-phone", name: "Dart (Flutter)", desc: "Cross-platform mobile", tip: "2 aplikasi mobile untuk UMKM sudah launching." },
+      { icon: "bi bi-layers", name: "Laravel", desc: "MVC, Eloquent, Auth", tip: "Proyek e-commerce & inventory system menggunakan Laravel." },
+      { icon: "bi bi-brush", name: "Figma", desc: "UI/UX Design", tip: "Desain wireframe hingga prototyping interaktif dengan tim." },
+      { icon: "bi bi-database", name: "MySQL", desc: "Query, Stored Procedure", tip: "Optimasi query ribuan baris data + indexing." },
+      { icon: "bi bi-tools", name: "MySQL Workbench", desc: "Database design & modeling", tip: "Membuat ERD dan migrasi database secara visual." },
+      { icon: "bi bi-github", name: "GitHub", desc: "Version Control & CI/CD", tip: "Kolaborasi tim with pull request & actions." },
+      { icon: "bi bi-git", name: "Git", desc: "Branch, merge, rebase", tip: "Alur kerja Git flow untuk project skala besar." },
+      { icon: "bi bi-filetype-js", name: "VS Code", desc: "IDE utama", tip: "Efisien dengan extensions & debugger." },
+      { icon: "bi bi-hdd-network", name: "Cisco Packet Tracer", desc: "Simulasi jaringan", tip: "Membangun topologi LAN, routing, subnetting." }
+    ];
+
+    // Data Proyek
+    const projectsArr = [
+      { title: "Sistem Inventaris Laravel", desc: "Aplikasi manajemen stok barang dengan Laravel, MySQL, dan realtime chart.", tags: ["Laravel", "MySQL", "Chart.js"], icon: "bi bi-box-seam", demoName: "Demo Laravel" },
+      { title: "Flutter E-Commerce App", desc: "Aplikasi mobile cross-platform dengan state management GetX & Firebase.", tags: ["Flutter", "Dart", "Firebase"], icon: "bi bi-cart", demoName: "Demo Mobile" },
+      { title: "Python Data Dashboard", desc: "Dashboard analitik menggunakan Python, Pandas, dan Streamlit.", tags: ["Python", "Pandas", "Streamlit"], icon: "bi bi-graph-up", demoName: "Lihat Dashboard" },
+      { title: "Java Spring Boot API", desc: "RESTful API untuk manajemen pengguna dengan JWT dan PostgreSQL.", tags: ["Java", "Spring Boot", "JWT"], icon: "bi bi-cloud-arrow-up", demoName: "Coba API" },
+      { title: "Simulasi Jaringan Cisco", desc: "Topologi jaringan perusahaan dengan VLAN, NAT, dan routing statis.", tags: ["Cisco", "Packet Tracer", "Networking"], icon: "bi bi-hdd-stack", demoName: "Topologi" },
+      { title: "Portofolio Figma to Code", desc: "Implementasi desain Figma menjadi website responsif modern.", tags: ["Figma", "Tailwind", "HTML/CSS"], icon: "bi bi-palette", demoName: "Demo Desain" }
+    ];
+
+    function showToast(message, isError = false) {
+      const toast = document.getElementById('toastMessage');
+      const textSpan = document.getElementById('toastText');
+      if (!toast) return;
+      textSpan.innerText = message;
+      toast.style.opacity = '1';
+      if (isError) toast.classList.add('bg-red-700'); else toast.classList.add('bg-slate-800');
+      setTimeout(() => { toast.style.opacity = '0'; toast.classList.remove('bg-red-700', 'bg-slate-800'); }, 2800);
+    }
+
+    function renderSkills() {
+      const container = document.getElementById('skillsContainer');
+      if (!container) return;
+      container.innerHTML = '';
+      skillsList.forEach(skill => {
+        const card = document.createElement('div');
+        card.className = 'bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-md border border-slate-200 dark:border-slate-700 text-center transition-all duration-300 cursor-pointer skill-item hover:shadow-xl';
+        card.innerHTML = `<i class="${skill.icon} text-4xl text-blue-500 mb-3 inline-block"></i><h3 class="text-xl font-bold dark:text-white">${skill.name}</h3><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">${skill.desc}</p><div class="mt-3 text-xs text-blue-400 font-medium"><i class="bi bi-cursor"></i> klik untuk tips</div>`;
+        card.addEventListener('click', () => showToast(`${skill.name} — ${skill.tip}`, false));
+        container.appendChild(card);
+      });
+    }
+
+    function renderProjects() {
+      const container = document.getElementById('projectsContainer');
+      if (!container) return;
+      container.innerHTML = '';
+      projectsArr.forEach((proj) => {
+        const card = document.createElement('div');
+        card.className = 'bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg border border-slate-100 dark:border-slate-700 card-hover transition-all';
+        card.innerHTML = `<div class="h-36 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center"><i class="${proj.icon} text-5xl text-white drop-shadow-md"></i></div><div class="p-5"><h3 class="text-xl font-bold dark:text-white">${proj.title}</h3><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">${proj.desc}</p><div class="flex flex-wrap gap-2 mt-3">${proj.tags.map(t => `<span class="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs px-2 py-1 rounded-full">${t}</span>`).join('')}</div><button class="demo-project-btn mt-4 w-full bg-slate-100 dark:bg-slate-700 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-slate-700 dark:text-slate-200 font-semibold py-2 rounded-xl transition flex items-center justify-center gap-2" data-project="${proj.title}"><i class="bi bi-play-circle"></i> ${proj.demoName}</button></div>`;
+        container.appendChild(card);
+      });
+      document.querySelectorAll('.demo-project-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => { e.preventDefault(); showToast(`Proyek "${btn.getAttribute('data-project')}" — demo interaktif akan segera hadir!`, false); });
+      });
+    }
+
+    function initContactForm() {
+      const form = document.getElementById('contactForm');
+      if (!form) return;
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('nameInput')?.value.trim();
+        const email = document.getElementById('emailInput')?.value.trim();
+        const msg = document.getElementById('msgInput')?.value.trim();
+        if (!name || !email || !msg) return showToast('Harap lengkapi semua kolom pesan!', true);
+        if (!email.includes('@') || !email.includes('.')) return showToast('Masukkan email yang valid!', true);
+        showToast(`Terima kasih ${name}! Pesan Anda telah terkirim.`, false);
+        form.reset();
+      });
+    }
+
+    // Dark Mode Functionality
+    function initDarkMode() {
+      const darkModeToggle = document.getElementById('darkModeToggle');
+      const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
+      const darkIcon = document.getElementById('darkIcon');
+      const darkIconMobile = document.getElementById('darkIconMobile');
+      
+      // Check local storage or system preference
+      if (localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        updateIcons(true);
+      } else {
+        document.documentElement.classList.remove('dark');
+        updateIcons(false);
+      }
+      
+      function updateIcons(isDark) {
+        const iconClasses = isDark ? 'bi-sun-fill' : 'bi-moon-fill';
+        if (darkIcon) darkIcon.className = `bi ${iconClasses} text-slate-700 dark:text-yellow-300`;
+        if (darkIconMobile) darkIconMobile.className = `bi ${iconClasses} text-slate-700 dark:text-yellow-300`;
+      }
+      
+      function toggleDark() {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('darkMode', isDark);
+        updateIcons(isDark);
+      }
+      
+      if (darkModeToggle) darkModeToggle.addEventListener('click', toggleDark);
+      if (darkModeToggleMobile) darkModeToggleMobile.addEventListener('click', toggleDark);
+    }
+
+    function initMobileMenu() {
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+          const icon = menuBtn.querySelector('i');
+          icon?.classList.toggle('bi-list');
+          icon?.classList.toggle('bi-x');
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); const icon = menuBtn.querySelector('i'); icon?.classList.add('bi-list'); icon?.classList.remove('bi-x'); });
+        });
+      }
+    }
+
+    function smoothScroll() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === "#" || href === "") return;
+          const target = document.querySelector(href);
+          if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+      });
+    }
+
+    function addScrollReveal() {
+      const sections = document.querySelectorAll('section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } });
+      }, { threshold: 0.1 });
+      sections.forEach(section => { section.style.opacity = '0'; section.style.transform = 'translateY(20px)'; section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out'; observer.observe(section); });
+    }
+
+    function init() { renderSkills(); renderProjects(); initContactForm(); initMobileMenu(); smoothScroll(); addScrollReveal(); initDarkMode(); }
+    init();
+  </script>
+</body>
+</html>
