@@ -231,7 +231,7 @@
         <a href="#" class="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition"><i class="bi bi-instagram"></i></a>
         <!-- <a href="#" class="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition"><i class="bi bi-twitter-x"></i></a> -->
       </div>
-      <p class="text-slate-500 dark:text-slate-400 text-sm">&copy; 2025 Portofolio - Rely Maryani 
+      <p class="text-slate-500 dark:text-slate-400 text-sm">&copy; 2026 Portofolio - Rely Maryani 
     </div>
   </footer>
 
@@ -259,12 +259,70 @@
 
     // Data Proyek
     const projectsArr = [
-      { title: "Sistem Inventaris Laravel", desc: "Aplikasi manajemen stok barang dengan Laravel, MySQL, dan realtime chart.", tags: ["Laravel", "MySQL", "Chart.js"], icon: "bi bi-box-seam", demoName: "Demo Laravel" },
-      { title: "Flutter E-Commerce App", desc: "Aplikasi mobile cross-platform dengan state management GetX & Firebase.", tags: ["Flutter", "Dart", "Firebase"], icon: "bi bi-cart", demoName: "Demo Mobile" },
-      { title: "Python Data Dashboard", desc: "Dashboard analitik menggunakan Python, Pandas, dan Streamlit.", tags: ["Python", "Pandas", "Streamlit"], icon: "bi bi-graph-up", demoName: "Lihat Dashboard" },
-      { title: "Java Spring Boot API", desc: "RESTful API untuk manajemen pengguna dengan JWT dan PostgreSQL.", tags: ["Java", "Spring Boot", "JWT"], icon: "bi bi-cloud-arrow-up", demoName: "Coba API" },
-      { title: "Simulasi Jaringan Cisco", desc: "Topologi jaringan perusahaan dengan VLAN, NAT, dan routing statis.", tags: ["Cisco", "Packet Tracer", "Networking"], icon: "bi bi-hdd-stack", demoName: "Topologi" },
-      { title: "Portofolio Figma to Code", desc: "Implementasi desain Figma menjadi website responsif modern.", tags: ["Figma", "Tailwind", "HTML/CSS"], icon: "bi bi-palette", demoName: "Demo Desain" }
+      {
+        title: "Weather App",
+        desc: "Aplikasi cuaca real-time dengan data suhu, kelembaban, dan kecepatan angin.",
+        tags: ["JavaScript", "Tailwind", "GeoLocation"],
+        icon: "bi bi-cloud-sun-fill",
+        demoName: "Lihat Demo",
+        demoLink: "weather_app.html"  
+        
+      },
+
+      { 
+        title: "Weekly schedule", 
+        desc: "Jadwal kuliah mingguan dengan fitur deteksi hari otomatis.", 
+        tags: ["JavaScript", "Bootstrap Icons", "LocalStorage"], 
+        icon: "bi bi-calendar-week", 
+        demoName: "Lihat Demo",
+        demoLink: "jadwal_produktif.html"
+      },
+
+      { 
+        title: "Sistem Inventaris Laravel",
+        desc: "Aplikasi manajemen stok barang dengan Laravel, MySQL, dan realtime chart.",
+        tags: ["Laravel", "MySQL", "Chart.js"],
+        icon: "bi bi-box-seam",
+        demoName: "Lihat Demo" 
+      },
+
+      { title:
+        "Flutter E-Commerce App",
+        desc: "Aplikasi mobile cross-platform dengan state management GetX & Firebase.",
+        tags: ["Flutter", "Dart", "Firebase"],
+        icon: "bi bi-cart",
+        demoName: "Lihat Demo" 
+      },
+      
+      {
+        title: "Python Data Dashboard",
+        desc: "Dashboard analitik menggunakan Python, Pandas, dan Streamlit.",
+        tags: ["Python", "Pandas", "Streamlit"],
+        icon: "bi bi-graph-up",
+        demoName: "Lihat Demo" 
+      },
+      
+      /*{ 
+        title: "Java Spring Boot API", 
+        desc: "RESTful API untuk manajemen pengguna dengan JWT dan PostgreSQL.", 
+        tags: ["Java", "Spring Boot", "JWT"], 
+        icon: "bi bi-cloud-arrow-up", 
+        demoName: "Coba API" 
+      },*/
+      { 
+        title: "Simulasi Jaringan Cisco", 
+        desc: "Topologi jaringan perusahaan dengan VLAN, NAT, dan routing statis.", 
+        tags: ["Cisco", "Packet Tracer", "Networking"], 
+        icon: "bi bi-hdd-stack", 
+        demoName: "Topologi" 
+      },
+
+      { 
+        title: "Portofolio Figma to Code", 
+        desc: "Implementasi desain Figma menjadi website responsif modern.", 
+        tags: ["Figma", "Tailwind", "HTML/CSS"], 
+        icon: "bi bi-palette", 
+        demoName: "Lihat Demo" }
     ];
 
     function showToast(message, isError = false) {
@@ -290,18 +348,50 @@
       });
     }
 
-    function renderProjects() {
+    //renderProjects() 
+
+      function renderProjects() {
       const container = document.getElementById('projectsContainer');
       if (!container) return;
       container.innerHTML = '';
       projectsArr.forEach((proj) => {
         const card = document.createElement('div');
         card.className = 'bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg border border-slate-100 dark:border-slate-700 card-hover transition-all';
-        card.innerHTML = `<div class="h-36 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center"><i class="${proj.icon} text-5xl text-white drop-shadow-md"></i></div><div class="p-5"><h3 class="text-xl font-bold dark:text-white">${proj.title}</h3><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">${proj.desc}</p><div class="flex flex-wrap gap-2 mt-3">${proj.tags.map(t => `<span class="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs px-2 py-1 rounded-full">${t}</span>`).join('')}</div><button class="demo-project-btn mt-4 w-full bg-slate-100 dark:bg-slate-700 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-slate-700 dark:text-slate-200 font-semibold py-2 rounded-xl transition flex items-center justify-center gap-2" data-project="${proj.title}"><i class="bi bi-play-circle"></i> ${proj.demoName}</button></div>`;
+        card.innerHTML = `
+          <div class="h-36 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+            <i class="${proj.icon} text-5xl text-white drop-shadow-md"></i>
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-bold dark:text-white">${proj.title}</h3>
+            <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">${proj.desc}</p>
+            <div class="flex flex-wrap gap-2 mt-3">
+              ${proj.tags.map(t => `<span class="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs px-2 py-1 rounded-full">${t}</span>`).join('')}
+            </div>
+            <button class="demo-project-btn mt-4 w-full bg-slate-100 dark:bg-slate-700 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-slate-700 dark:text-slate-200 font-semibold py-2 rounded-xl transition flex items-center justify-center gap-2" 
+                    data-project="${proj.title}" 
+                    data-link="${proj.demoLink || '#'}">
+              <i class="bi bi-play-circle"></i> ${proj.demoName}
+            </button>
+          </div>
+        `;
         container.appendChild(card);
       });
+
+      // UPDATE event listener untuk tombol demo
       document.querySelectorAll('.demo-project-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => { e.preventDefault(); showToast(`Proyek "${btn.getAttribute('data-project')}" — demo interaktif akan segera hadir!`, false); });
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const projectTitle = btn.getAttribute('data-project');
+          const demoLink = btn.getAttribute('data-link');
+          
+          if (demoLink && demoLink !== '#') {
+            // Buka di tab baru
+            window.open(demoLink, '_blank');
+            showToast(`Membuka ${projectTitle}...`, false);
+          } else {
+            showToast(`Proyek "${projectTitle}" — demo akan segera hadir!`, false);
+          }
+        });
       });
     }
 
